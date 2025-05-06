@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  tiktok-api:
+    build: .
+    container_name: tiktok-scraper-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - TZ=UTC
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - traefik_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tiktok-api.rule=Host(`tiktok-api.local`)"
+      - "traefik.http.routers.tiktok-api.entrypoints=web"
+      - "traefik.http.services.tiktok-api.loadbalancer.server.port=8000"
+
+networks:
+  traefik_network:
+    external: true 
