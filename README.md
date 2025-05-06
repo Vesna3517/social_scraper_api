@@ -101,4 +101,4 @@ The project includes Docker configuration with the following features:
 
 ## Note
 
-This API uses the TikTokApi library which may require additional setup for authentication. Make sure to follow the TikTokApi documentation for any additional configuration needed. 
+This API uses the TikTokApi library which may require additional setup for authentication. Make sure to follow the TikTokApi documentation for any additional configuration needed.
